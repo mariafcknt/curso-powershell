@@ -1,0 +1,1 @@
+Write-Host $test #variável criada no console
