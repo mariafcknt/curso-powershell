@@ -1,9 +1,9 @@
 Param (
     [Parameter(Mandatory,
-    HelpMessage = "Please provide a valid file name")]
+    HelpMessage = "Please provide a valid path")]
     [String]$Path
 )
 Remove-Item $Path
-Write-Host "File $Path removed successfully"
+Write-Host "The file $Path was removed successfully"
 
-#Exemplo de uso: ./RemoveFile -Path './test.txt'
+#How to use: ./RemoveFile -Path './test.txt'

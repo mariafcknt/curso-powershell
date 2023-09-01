@@ -2,12 +2,11 @@ Param(
     $Path
 )
 If (-Not $Path -eq '') {
-    New-Item $Path #cria um novo arquivo no caminho/path passado como parâmetro
+    New-Item $Path #creates a new file at the path passed as a parameter
     Write-Host "File $Path was created"
 } Else {
     Write-Error "Path cannot be empty"
 }
 
-
-#Exemplo de uso
+#Example of use
 #./CreateFile.ps1 -Path './newfile.txt' 
