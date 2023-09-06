@@ -1,9 +1,26 @@
 Param (
     [string]$Path = './app', 
-    [string]$DestinationPath = './'
+    [string]$DestinationPath = './',
+    [switch]$PathIsWebApp
+)  
+    If ($PathIsWebApp -eq $True) {
+        try {
+            $ContainsApplicationFiles = "$((Get-ChildItem $Path).Extension | Sort-Object -Unique)" -match '\.js|\.html|\.css'
+
+            If (-Not $ContainsApplicationFiles) {
+                Throw "Not a web app"
+            } Else {
+                Write-Host "Source files look good, continuing"
+            }
+        }
+        catch {
+            Throw "No backup created due to: $($_.Exception.Message)"
+        }
+    }
+
     #the parameters can be modified when the code is called
     #example: .\Backup.ps1 -Path './webapp'
-)
+
 If (-Not (Test-Path $Path)) {
     Throw "The source directory $Path does not exist, please specify an existing directory"
 }
